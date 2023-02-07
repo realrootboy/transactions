@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  backend-dev:
+    image: node:lts-alpine
+    container_name: ignite-nodejs-backend
+    tty: true
+    environment:
+      NODE_ENV: development
+      PORT: 3333
+      DB_HOST: backend-db
+      DB_PORT: 3306
+      DB_USER: ignite
+      DB_PASS: ignite
+      DB_NAME: ignite
+      DB_USER_TEST: ignite_test
+      DB_PASS_TEST: ignite_test
+      DB_NAME_TEST: ignite_test
+    restart: on-failure
+    ports:
+      - 3333:3333
+    networks:
+      - backend
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c 'npm i && npm run dev'
+    depends_on:
+      - backend-db
+  
+  backend-db:
+    image: mariadb:latest
+    container_name: ignite-sqlite
+    tty: true
+    stdin_open: true
+    restart: on-failure
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - backend
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./entrypoint.sql:/docker-entrypoint-initdb.d/entrypoint.sql
+    ports:
+      - 3306:3306
+
+networks:
+  backend:
