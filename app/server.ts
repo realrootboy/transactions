@@ -1,3 +1,4 @@
+import { env } from './env'
 import fastify from 'fastify'
 import { knex } from './database'
 
@@ -11,7 +12,7 @@ app.get('/hello', async () => {
 
 app
   .listen({
-    port: 3333,
+    port: Number(env.PORT),
     host: '0.0.0.0',
   })
   .then(() => {

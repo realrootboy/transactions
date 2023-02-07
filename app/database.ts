@@ -1,11 +1,11 @@
-import 'dotenv/config'
+import { env } from './env'
 import { Knex, knex as setupKnex } from 'knex'
 
-const dbHost = process.env.DB_HOST
-const dbPort = process.env.DB_PORT
-const dbUser = process.env.DB_USER
-const dbPass = process.env.DB_PASS
-const dbName = process.env.DB_NAME
+const dbHost = env.DB_HOST
+const dbPort = env.DB_PORT
+const dbUser = env.DB_USER
+const dbPass = env.DB_PASS
+const dbName = env.DB_NAME
 
 export const config: Knex.Config = {
   client: 'mysql',
