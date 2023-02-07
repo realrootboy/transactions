@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { Knex, knex as setupKnex } from 'knex'
 
 const dbHost = process.env.DB_HOST
