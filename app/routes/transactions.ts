@@ -91,14 +91,12 @@ export async function transactionsRoutes(app: FastifyInstance) {
     }
 
     const id = crypto.randomUUID()
-    await knex('transactions')
-      .insert({
-        id,
-        title,
-        amount: type === 'credit' ? amount : -amount,
-        session_id: sessionId,
-      })
-      .returning('id')
+    await knex('transactions').insert({
+      id,
+      title,
+      amount: type === 'credit' ? amount : -amount,
+      session_id: sessionId,
+    })
 
     return reply.status(201).send({ id })
   })

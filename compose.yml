@@ -6,8 +6,6 @@ services:
     container_name: ignite-nodejs-backend
     tty: true
     # load environment variables from .env file
-    env_file:
-      - .env
     restart: on-failure
     ports:
       - 3333:3333
