@@ -20,7 +20,7 @@ This is a transactions API project where an authenticated user can create credit
 - Clone the repository
 - Run the command `docker-compose up` at the root of the project
 
-## Testes
+## Tests
 - Run the command `docker-compose run --rm backend-dev npm run test` at the root of the project
 
 
